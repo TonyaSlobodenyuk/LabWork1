@@ -7,21 +7,10 @@ public class LabWork1 {
     Масиви можуть відрізнятися по порядку елементів, але бути однаковими зі складу.
     Приклад: [1,4,7]==[4,7,1- еквівалентні]*/
     public  void comparisons(int[] arr1, int[] arr2){
-        int check=0;
         if (arr1.length == arr2.length) {
-            for (int i = 0; i < arr1.length; i++) {
-                for (int j = 0; j < arr2.length; j++) {
-                    if (arr1[i] == arr2[j]) {
-                        check++;
-                    }
-                }
-            }
-
-            if (check == arr1.length){
-                System.out.print("Array 1 and Array 2 are similar\n");
-            }
+            Arrays.equals(arr1,arr2);
+            System.out.print("Array 1 and Array 2 are similar\n");
         }
-
         else{
             System.out.print("Array 1 and Array 2 aren't similar\n");
         }
@@ -32,26 +21,24 @@ public class LabWork1 {
     /* Створіть метод, який  приймає два параметри типу String та повертає кількість повних повторів
     одного слова літерами другого.
     Приклад: слово =він= можливо набрати три рази літерами , які є у рядку  =ннніііввввукег=*/
-    public void findNumOfRep(String word, String lettersArr){
+   public void findNumOfRep(String word, String lettersArr){
 
-       HashMap<Character, Integer> word2 = uniqueCharacters(lettersArr);
+       HashMap<Character, Integer> word2 = uniqueChars(lettersArr);
+       List<Integer> arrOfNum = new ArrayList<Integer>();
+       int count=0;
+       for (Map.Entry<Character, Integer> entry2 : word2.entrySet()) {
+           for(int j=0; j < word.length(); j++){
+               if (word.charAt(j) == entry2.getKey()) {
+                   System.out.println(word.charAt(j)+" "+entry2.getKey());
+                   arrOfNum.add(entry2.getValue());
+               }
+           };
+       }
+       Collections.sort(arrOfNum);
+       System.out.println(arrOfNum.get(0));
+   }
 
-        List<Integer> arrOfNum = new ArrayList<Integer>();
-        int count=0;
-        for (Map.Entry<Character, Integer> entry2 : word2.entrySet()) {
-            for(int j=0; j < word.length(); j++){
-                if (word.charAt(j) == entry2.getKey()) {
-                    System.out.println(word.charAt(j)+" "+entry2.getKey());
-                    arrOfNum.add(entry2.getValue());
-                }
-
-            };
-        }
-        Collections.sort(arrOfNum);
-        System.out.println(arrOfNum.get(0));
-    }
-
-    public HashMap<Character, Integer> uniqueCharacters(String word){
+    public HashMap<Character, Integer> uniqueChars(String word){
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         char[] chars = word.toCharArray();
 
@@ -100,7 +87,7 @@ public class LabWork1 {
     {
         HashMap<Integer, Integer> counter = new HashMap<>();
         for (int i=0; i< arr.length; i++) {
-            int newValue = counter.getOrDefault(arr[i], 0) + 1;
+            int newValue = counter.getOrDefault(arr[i], 0)+1 ;
             counter.put(arr[i],newValue);
         }
         System.out.println(counter);
@@ -109,8 +96,8 @@ public class LabWork1 {
     public static void main(String[] args) {
         System.out.println("***Task 6***");
         LabWork1 lb=new LabWork1();
-        int[] arr1 = {1,2,3,4};
-        int[] arr2 = {4,3,1,2};
+        int[] arr1 = {1,2,3,4,2};
+        int[] arr2 = {4,3,1,2,2};
         lb.comparisons(arr1,arr2);
 
         System.out.println("***Task 18***");
