@@ -35,6 +35,7 @@ public class LabWork1 {
            };
        }
        Collections.sort(arrOfNum);
+       Collections.min(arrOfNum);
        System.out.println(arrOfNum.get(0));
    }
 
